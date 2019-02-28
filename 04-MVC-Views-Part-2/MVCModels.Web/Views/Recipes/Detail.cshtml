@@ -1,9 +1,75 @@
 ﻿
-
+@model Recipe
 @{
     ViewData["Title"] = "Detail";
 }
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style>
 
-<h2>Detail</h2>
+        div > img {
+
+            float: left;
+            padding-right: 10px;
+
+        }
+
+        .imgIntro {
+
+            width: 100%;
+            display: block;
+            padding-bottom: 90px;
+
+        }
+
+    </style>
 
 
+</head>
+<body>
+
+
+    <h2 style="font-size: 30px">Detail</h2>
+    <div class="imgIntro ">
+        <img src="/../../images/@Model.ImageName" height="250" width="300" />
+
+        <div class="intro">
+
+            <p style="font-size: 25px">@Model.Name</p>
+            <p>@Model.RecipeType</p>
+            <span style="font-weight: bold">Cook Time </span><span>@Model.CookTimeInMinutes minutes</span><span><br /></span>
+                                                             
+            <p>@Model.Description</p>
+
+        </div>
+    </div>
+
+    
+
+    <div>
+        <h3 style="font-size: 30px">Ingredients</h3>
+        <ul>
+            @foreach (Ingredient ingredients in Model.Ingredients)
+            {
+                <li>@ingredients.Quantity @ingredients.Name</li>
+            }
+
+
+        </ul>
+
+    </div>
+
+    <div class="prep">
+
+        <h4 style="font-size: 30px">Preparation</h4>
+        <ol>
+            @foreach (string prepItem in Model.PreparationSteps)
+            {
+                <li>@prepItem</li>
+            }
+        </ol>
+    </div>
+
+</body>
+</html>
