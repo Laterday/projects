@@ -1,7 +1,71 @@
-﻿
+﻿@model IList<Recipe>
 @{
     ViewData["Title"] = "Table";
 }
 
 <h2>Table</h2>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+
+        .item1 {
+            display: inline-block;
+            padding-right: 50px;
+        }
+        .item2 {
+            display: inline-block;
+            width: 325px;
+            height: 450px;
+        }
+
+        .text1{
+            text-align: center;
+        }
+
+    </style>
+    <title></title>
+</head>
+<body>
+
+    <div class="item1">
+        <p>Name</p>
+        <p>Type</p>
+        <p>Cook Time</p>
+        <p>Ingredients</p>
+        <p>Rating</p>
+    </div>
+
+
+    @foreach (Recipe recipe in Model)
+    {
+        <div class="item2">
+            <div class="text1">
+                <img src="/../../images/@recipe.ImageName" height="125" width="150" />
+                <p>@recipe.Name</p>
+                <p>@recipe.RecipeType</p>
+                <p>@recipe.CookTimeInMinutes min</p>
+                <p>@recipe.Ingredients.Count ingredients</p>
+                @switch (Math.Round(recipe.AverageRating, 0))
+                {
+                    case 1:
+                        <img src="/../../images/1-star.png" height="20" width="90" class="bottomalign" />
+                        break;
+                    case 2:
+                        <img src="/../../images/2-star.png" height="20" width="90" class="bottomalign" />
+                        break;
+                    case 3:
+                        <img src="/../../images/3-star.png" height="20" width="90" class="bottomalign" />
+                        break;
+                    case 4:
+                        <img src="/../../images/4-star.png" height="20" width="90" class="bottomalign" />
+                        break;
+                    case 5:
+                        <img src="/../../images/5-star.png" height="20" width="90" class="bottomalign" />
+                        break;
+                }
+            </div>
+        </div>
+    }
+    </body>
+</html>
 
